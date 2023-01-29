@@ -49,8 +49,7 @@ jobs:
         env:
         PHP_CS_FIXER_IGNORE_ENV: 1
         run: |
-        if runner.os !='Windows'
-         ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
+        ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
 
       - name: Tests
         run: ./vendor/bin/pest
