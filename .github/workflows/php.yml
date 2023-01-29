@@ -48,8 +48,7 @@ jobs:
       - name: Cs Fixer
         env:
         PHP_CS_FIXER_IGNORE_ENV: 1
-        run: |
-        ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
+        run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
 
       - name: Tests
         run: ./vendor/bin/pest
