@@ -46,7 +46,7 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Cs Fixer
-        if: runner.os =='Windows'
+        if: runner.os !='Windows'
         env:
           PHP_CS_FIXER_IGNORE_ENV: 1
         run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
