@@ -46,8 +46,9 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
       
       - name: Code Style 👨‍🏭
-        env: 
-          PHP_CS_FIXER_IGNORE_ENV=1
+        env:
+        PHP_CS_FIXER_IGNORE_ENV: 1
+        NPM_CONFIG_LOGLEVEL: verbose
         run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
         if: runner.os == 'Linux'
 
