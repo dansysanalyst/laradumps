@@ -44,12 +44,16 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+      
+       - name: Code Style 👨‍🏭
+        if: runner.os == 'Linux'
+        env:
+            PHP_CS_FIXER_IGNORE_ENV: 1
+            run: ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
 
-      - name: Cs Fixer
-        run: PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --verbose --dry-run --using-cache=no --stop-on-violation
-
-      - name: Tests
-        run: ./vendor/bin/pest
-
-      - name: Larastan
+      - name: Larastan 🔬
         run: git update-index --chmod=+x ./larastan.sh && bash ./larastan.sh
+
+      - name: Tests 🧫
+        run: composer test:tests
+
